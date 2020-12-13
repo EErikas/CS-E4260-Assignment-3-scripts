@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Janus WebRTC Server: Admin/Monitor</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+    {% block scripts %}
+
+    {% endblock %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css"
+          type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          type="text/css"/>
+</head>
+<body>
+<div class="container">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="index.html">Janus</a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'streamer' %}">WebRTC Streamer page</a></li>
+            <li><a href="{% url 'client' %}">WebRTC Client Page</a></li>
+            <li><a href="{% url 'rtp_hls' %}">WebRTC to HLS</a></li>
+            <li><a href="{% url 'rtmp_hls' %}">RTMP to HLS</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+
+    {% block content %}
+    {% endblock %}
+</div>
+
+{% block additional_scripts %}
+{% endblock %}
+</body>
+</html>
