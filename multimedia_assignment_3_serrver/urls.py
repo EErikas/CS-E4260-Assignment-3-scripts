@@ -25,4 +25,5 @@ urlpatterns = [
     path('streamer/', show_streamer, name='streamer'),
     path('hls/rtp', show_rtp_to_hls, name='rtp_hls'),
     path('hls/rtmp', show_rtmp_to_hls, name='rtmp_hls'),
+    path('start/ffmpeg', execute_command, name='run_ffmpeg'),
 ]

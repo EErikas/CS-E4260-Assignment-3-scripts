@@ -1,5 +1,7 @@
 import socket
-from django.shortcuts import render, redirect
+import os
+from django.shortcuts import render, HttpResponse, redirect
+from .settings import BASE_DIR as base_dir
 
 
 def show_index(request):
@@ -23,12 +25,20 @@ def show_streamer(request):
 def show_rtp_to_hls(request):
     return render(request, 'hls.html', context={
         "name": "RTP to HLS (From Janus)",
-        "source_url": "http://192.168.1.125:8080/live/testRTP.m3u8"
+        "source_url": "http://localhost:8080/live/test.m3u8"
     })
+
+
+def execute_command(request):
+    source_path = os.path.join(base_dir, 'source.sdp')
+    command = 'ffmpeg -analyzeduration 450M -probesize 450M -protocol_whitelist file,udp,rtp -i {} -c:v libx264 -preset ultrafast -tune zerolatency -f flv rtmp://localhost/live/test'.format(
+        source_path)
+    os.system(command)
+    return HttpResponse('Executed:\n{}'.format(command))
 
 
 def show_rtmp_to_hls(request):
     return render(request, 'hls.html', context={
         "name": "RTMP to HLS (From OBS)",
-        "source_url": "http://192.168.1.125:8080/live/testRTMP.m3u8"
+        "source_url": "http://localhost:8080/live/testRTMP.m3u8"
     })
