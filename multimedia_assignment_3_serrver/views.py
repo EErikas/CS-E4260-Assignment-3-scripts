@@ -23,10 +23,12 @@ def show_streamer(request):
 
 
 def show_rtp_to_hls(request):
-    return render(request, 'hls.html', context={
-        "name": "RTP to HLS (From Janus)",
-        "source_url": "http://localhost:8080/hls/test.m3u8"
-    })
+    os.popen('vlc http://localhost:8080/hls/test.m3u8')
+    return HttpResponse("Running stream")
+    # return render(request, 'hls.html', context={
+    #     "name": "RTP to HLS (From Janus)",
+    #     "source_url": "http://localhost:8080/hls/test.m3u8"
+    # })
 
 
 def execute_command(request):
